@@ -1,17 +1,15 @@
-using System;
-using System.Windows.Forms;
 using Cuttage.Views;
 
-namespace Cuttage
+namespace Cuttage;
+
+internal static class Program
 {
-    internal static class Program
+    [STAThread]
+    static void Main()
     {
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-        }
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+        Application.Run(new MainForm());
     }
 }

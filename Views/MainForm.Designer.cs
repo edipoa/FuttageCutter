@@ -1,243 +1,253 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace Cuttage.Views;
 
-namespace Cuttage.Views
+partial class MainForm
 {
-    partial class MainForm
+    private System.ComponentModel.IContainer components = null;
+
+    // Section headers
+    private Label lblSectionFiles;
+    private Label lblSectionTiming;
+
+    // Panels
+    private Panel panelFiles;
+    private Panel panelTiming;
+
+    // File controls
+    private Label lblInputFile;
+    private TextBox txtInputFile;
+    private Button btnSelectInput;
+    private Label lblOutputFile;
+    private TextBox txtOutputFile;
+    private Button btnSelectOutput;
+
+    // Timing controls
+    private Label lblStartTime;
+    private DateTimePicker dtpStartTime;
+    private Label lblEndTime;
+    private DateTimePicker dtpEndTime;
+    private Label lblDuration;
+
+    // Actions
+    private Button btnProcess;
+    private Button btnCancel;
+
+    // Status
+    private ProgressBar progressBar;
+    private Label lblStatus;
+
+    protected override void Dispose(bool disposing)
     {
-        private System.ComponentModel.IContainer components = null;
-        private TextBox txtInputFile;
-        private TextBox txtOutputFile;
-        private Button btnSelectInput;
-        private Button btnSelectOutput;
-        private DateTimePicker dtpStartTime;
-        private DateTimePicker dtpEndTime;
-        private Button btnProcess;
-        private Label lblInputFile;
-        private Label lblOutputFile;
-        private Label lblStartTime;
-        private Label lblEndTime;
-        private Label lblDuration;
-        private Label lblStatus;
-        private ProgressBar progressBar;
-        private GroupBox groupBoxFiles;
-        private GroupBox groupBoxTiming;
+        if (disposing && components != null)
+            components.Dispose();
+        base.Dispose(disposing);
+    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    private void InitializeComponent()
+    {
+        components = new System.ComponentModel.Container();
 
-        private void InitializeComponent()
-        {
-            txtInputFile = new TextBox();
-            txtOutputFile = new TextBox();
-            btnSelectInput = new Button();
-            btnSelectOutput = new Button();
-            dtpStartTime = new DateTimePicker();
-            dtpEndTime = new DateTimePicker();
-            btnProcess = new Button();
-            lblInputFile = new Label();
-            lblOutputFile = new Label();
-            lblStartTime = new Label();
-            lblEndTime = new Label();
-            lblDuration = new Label();
-            lblStatus = new Label();
-            progressBar = new ProgressBar();
-            groupBoxFiles = new GroupBox();
-            groupBoxTiming = new GroupBox();
-            groupBoxFiles.SuspendLayout();
-            groupBoxTiming.SuspendLayout();
-            SuspendLayout();
-            // 
-            // txtInputFile
-            // 
-            txtInputFile.Location = new Point(15, 50);
-            txtInputFile.Name = "txtInputFile";
-            txtInputFile.ReadOnly = true;
-            txtInputFile.Size = new Size(450, 23);
-            txtInputFile.TabIndex = 1;
-            // 
-            // txtOutputFile
-            // 
-            txtOutputFile.Location = new Point(15, 100);
-            txtOutputFile.Name = "txtOutputFile";
-            txtOutputFile.ReadOnly = true;
-            txtOutputFile.Size = new Size(450, 23);
-            txtOutputFile.TabIndex = 3;
-            // 
-            // btnSelectInput
-            // 
-            btnSelectInput.Location = new Point(475, 50);
-            btnSelectInput.Name = "btnSelectInput";
-            btnSelectInput.Size = new Size(85, 23);
-            btnSelectInput.TabIndex = 2;
-            btnSelectInput.Text = "Selecionar";
-            btnSelectInput.UseVisualStyleBackColor = true;
-            btnSelectInput.Click += btnSelectInput_Click;
-            // 
-            // btnSelectOutput
-            // 
-            btnSelectOutput.Location = new Point(475, 100);
-            btnSelectOutput.Name = "btnSelectOutput";
-            btnSelectOutput.Size = new Size(85, 23);
-            btnSelectOutput.TabIndex = 4;
-            btnSelectOutput.Text = "Selecionar";
-            btnSelectOutput.UseVisualStyleBackColor = true;
-            btnSelectOutput.Click += btnSelectOutput_Click;
-            // 
-            // dtpStartTime
-            // 
-            dtpStartTime.Format = DateTimePickerFormat.Time;
-            dtpStartTime.Location = new Point(15, 50);
-            dtpStartTime.Name = "dtpStartTime";
-            dtpStartTime.ShowUpDown = true;
-            dtpStartTime.Size = new Size(120, 23);
-            dtpStartTime.TabIndex = 6;
-            dtpStartTime.Value = new DateTime(2025, 9, 28, 0, 0, 0, 0);
-            dtpStartTime.ValueChanged += dtpStartTime_ValueChanged;
-            // 
-            // dtpEndTime
-            // 
-            dtpEndTime.Format = DateTimePickerFormat.Time;
-            dtpEndTime.Location = new Point(150, 50);
-            dtpEndTime.Name = "dtpEndTime";
-            dtpEndTime.ShowUpDown = true;
-            dtpEndTime.Size = new Size(120, 23);
-            dtpEndTime.TabIndex = 7;
-            dtpEndTime.Value = new DateTime(2025, 9, 28, 0, 1, 0, 0);
-            dtpEndTime.ValueChanged += dtpEndTime_ValueChanged;
-            // 
-            // btnProcess
-            // 
-            btnProcess.BackColor = Color.Green;
-            btnProcess.ForeColor = Color.White;
-            btnProcess.Location = new Point(250, 274);
-            btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(100, 35);
-            btnProcess.TabIndex = 8;
-            btnProcess.Text = "Cortar Vídeo";
-            btnProcess.UseVisualStyleBackColor = false;
-            btnProcess.Click += btnProcess_Click;
-            // 
-            // lblInputFile
-            // 
-            lblInputFile.Location = new Point(15, 25);
-            lblInputFile.Name = "lblInputFile";
-            lblInputFile.Size = new Size(120, 23);
-            lblInputFile.TabIndex = 0;
-            lblInputFile.Text = "Arquivo de entrada:";
-            lblInputFile.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblOutputFile
-            // 
-            lblOutputFile.Location = new Point(15, 75);
-            lblOutputFile.Name = "lblOutputFile";
-            lblOutputFile.Size = new Size(120, 23);
-            lblOutputFile.TabIndex = 3;
-            lblOutputFile.Text = "Arquivo de saída:";
-            lblOutputFile.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblStartTime
-            // 
-            lblStartTime.Location = new Point(15, 25);
-            lblStartTime.Name = "lblStartTime";
-            lblStartTime.Size = new Size(100, 23);
-            lblStartTime.TabIndex = 0;
-            lblStartTime.Text = "Tempo inicial:";
-            lblStartTime.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblEndTime
-            // 
-            lblEndTime.Location = new Point(150, 25);
-            lblEndTime.Name = "lblEndTime";
-            lblEndTime.Size = new Size(100, 23);
-            lblEndTime.TabIndex = 7;
-            lblEndTime.Text = "Tempo final:";
-            lblEndTime.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblDuration
-            // 
-            lblDuration.Location = new Point(15, 85);
-            lblDuration.Name = "lblDuration";
-            lblDuration.Size = new Size(300, 23);
-            lblDuration.TabIndex = 8;
-            lblDuration.Text = "Duração: 00:01:00";
-            lblDuration.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblStatus
-            // 
-            lblStatus.Location = new Point(27, 312);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(546, 23);
-            lblStatus.TabIndex = 10;
-            lblStatus.Text = "Pronto";
-            lblStatus.TextAlign = ContentAlignment.MiddleLeft;
-            lblStatus.Visible = false;
-            // 
-            // progressBar
-            // 
-            progressBar.Location = new Point(27, 343);
-            progressBar.Name = "progressBar";
-            progressBar.Size = new Size(546, 15);
-            progressBar.TabIndex = 9;
-            progressBar.Visible = false;
-            // 
-            // groupBoxFiles
-            // 
-            groupBoxFiles.Controls.Add(lblInputFile);
-            groupBoxFiles.Controls.Add(txtInputFile);
-            groupBoxFiles.Controls.Add(btnSelectInput);
-            groupBoxFiles.Controls.Add(lblOutputFile);
-            groupBoxFiles.Controls.Add(txtOutputFile);
-            groupBoxFiles.Controls.Add(btnSelectOutput);
-            groupBoxFiles.Location = new Point(12, 12);
-            groupBoxFiles.Name = "groupBoxFiles";
-            groupBoxFiles.Size = new Size(576, 130);
-            groupBoxFiles.TabIndex = 0;
-            groupBoxFiles.TabStop = false;
-            groupBoxFiles.Text = "Arquivos";
-            // 
-            // groupBoxTiming
-            // 
-            groupBoxTiming.Controls.Add(lblStartTime);
-            groupBoxTiming.Controls.Add(dtpStartTime);
-            groupBoxTiming.Controls.Add(lblEndTime);
-            groupBoxTiming.Controls.Add(dtpEndTime);
-            groupBoxTiming.Controls.Add(lblDuration);
-            groupBoxTiming.Location = new Point(12, 148);
-            groupBoxTiming.Name = "groupBoxTiming";
-            groupBoxTiming.Size = new Size(576, 120);
-            groupBoxTiming.TabIndex = 5;
-            groupBoxTiming.TabStop = false;
-            groupBoxTiming.Text = "Tempo de Corte";
-            // 
-            // MainForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(600, 370);
-            Controls.Add(groupBoxFiles);
-            Controls.Add(groupBoxTiming);
-            Controls.Add(btnProcess);
-            Controls.Add(progressBar);
-            Controls.Add(lblStatus);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "MainForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Futtage Cutter - Cortar Vídeos";
-            groupBoxFiles.ResumeLayout(false);
-            groupBoxFiles.PerformLayout();
-            groupBoxTiming.ResumeLayout(false);
-            ResumeLayout(false);
-        }
+        // ── Instantiate ──
+        lblSectionFiles  = new Label();
+        lblSectionTiming = new Label();
+        panelFiles       = new Panel();
+        panelTiming      = new Panel();
+        lblInputFile     = new Label();
+        txtInputFile     = new TextBox();
+        btnSelectInput   = new Button();
+        lblOutputFile    = new Label();
+        txtOutputFile    = new TextBox();
+        btnSelectOutput  = new Button();
+        lblStartTime     = new Label();
+        dtpStartTime     = new DateTimePicker();
+        lblEndTime       = new Label();
+        dtpEndTime       = new DateTimePicker();
+        lblDuration      = new Label();
+        btnProcess       = new Button();
+        btnCancel        = new Button();
+        progressBar      = new ProgressBar();
+        lblStatus        = new Label();
+
+        panelFiles.SuspendLayout();
+        panelTiming.SuspendLayout();
+        SuspendLayout();
+
+        // ── lblSectionFiles ──
+        lblSectionFiles.AutoSize  = false;
+        lblSectionFiles.Location  = new Point(12, 14);
+        lblSectionFiles.Size      = new Size(200, 18);
+        lblSectionFiles.Text      = "ARQUIVOS";
+        lblSectionFiles.Font      = new Font("Segoe UI", 8f, FontStyle.Bold);
+
+        // ── panelFiles ──
+        panelFiles.Location = new Point(12, 36);
+        panelFiles.Size     = new Size(596, 118);
+        panelFiles.Controls.AddRange(new Control[] {
+            lblInputFile, txtInputFile, btnSelectInput,
+            lblOutputFile, txtOutputFile, btnSelectOutput
+        });
+
+        // lblInputFile
+        lblInputFile.AutoSize = false;
+        lblInputFile.Location = new Point(12, 10);
+        lblInputFile.Size     = new Size(200, 18);
+        lblInputFile.Text     = "Arquivo de entrada:";
+        lblInputFile.Font     = new Font("Segoe UI", 9f);
+        lblInputFile.Tag      = "muted";
+
+        // txtInputFile
+        txtInputFile.Location  = new Point(12, 32);
+        txtInputFile.Size      = new Size(472, 26);
+        txtInputFile.ReadOnly  = true;
+        txtInputFile.Font      = new Font("Segoe UI", 9f);
+        txtInputFile.TabIndex  = 0;
+
+        // btnSelectInput
+        btnSelectInput.Location = new Point(494, 31);
+        btnSelectInput.Size     = new Size(90, 28);
+        btnSelectInput.Text     = "Selecionar";
+        btnSelectInput.Font     = new Font("Segoe UI", 9f);
+        btnSelectInput.TabIndex = 1;
+        btnSelectInput.Click   += btnSelectInput_Click;
+
+        // lblOutputFile
+        lblOutputFile.AutoSize = false;
+        lblOutputFile.Location = new Point(12, 68);
+        lblOutputFile.Size     = new Size(200, 18);
+        lblOutputFile.Text     = "Arquivo de saída:";
+        lblOutputFile.Font     = new Font("Segoe UI", 9f);
+        lblOutputFile.Tag      = "muted";
+
+        // txtOutputFile
+        txtOutputFile.Location  = new Point(12, 86);
+        txtOutputFile.Size      = new Size(472, 26);
+        txtOutputFile.ReadOnly  = true;
+        txtOutputFile.Font      = new Font("Segoe UI", 9f);
+        txtOutputFile.TabIndex  = 2;
+
+        // btnSelectOutput
+        btnSelectOutput.Location = new Point(494, 85);
+        btnSelectOutput.Size     = new Size(90, 28);
+        btnSelectOutput.Text     = "Salvar como";
+        btnSelectOutput.Font     = new Font("Segoe UI", 9f);
+        btnSelectOutput.TabIndex = 3;
+        btnSelectOutput.Click   += btnSelectOutput_Click;
+
+        // ── lblSectionTiming ──
+        lblSectionTiming.AutoSize  = false;
+        lblSectionTiming.Location  = new Point(12, 168);
+        lblSectionTiming.Size      = new Size(200, 18);
+        lblSectionTiming.Text      = "TEMPO DE CORTE";
+        lblSectionTiming.Font      = new Font("Segoe UI", 8f, FontStyle.Bold);
+
+        // ── panelTiming ──
+        panelTiming.Location = new Point(12, 190);
+        panelTiming.Size     = new Size(596, 95);
+        panelTiming.Controls.AddRange(new Control[] {
+            lblStartTime, dtpStartTime,
+            lblEndTime, dtpEndTime,
+            lblDuration
+        });
+
+        // lblStartTime
+        lblStartTime.AutoSize = false;
+        lblStartTime.Location = new Point(12, 10);
+        lblStartTime.Size     = new Size(80, 18);
+        lblStartTime.Text     = "Início:";
+        lblStartTime.Font     = new Font("Segoe UI", 9f);
+        lblStartTime.Tag      = "muted";
+
+        // dtpStartTime
+        dtpStartTime.Format        = DateTimePickerFormat.Time;
+        dtpStartTime.ShowUpDown    = true;
+        dtpStartTime.Location      = new Point(12, 32);
+        dtpStartTime.Size          = new Size(130, 26);
+        dtpStartTime.Font          = new Font("Segoe UI", 10f);
+        dtpStartTime.Value         = new DateTime(2025, 1, 1, 0, 0, 0);
+        dtpStartTime.TabIndex      = 4;
+        dtpStartTime.ValueChanged += dtpStartTime_ValueChanged;
+
+        // lblEndTime
+        lblEndTime.AutoSize = false;
+        lblEndTime.Location = new Point(160, 10);
+        lblEndTime.Size     = new Size(80, 18);
+        lblEndTime.Text     = "Fim:";
+        lblEndTime.Font     = new Font("Segoe UI", 9f);
+        lblEndTime.Tag      = "muted";
+
+        // dtpEndTime
+        dtpEndTime.Format        = DateTimePickerFormat.Time;
+        dtpEndTime.ShowUpDown    = true;
+        dtpEndTime.Location      = new Point(160, 32);
+        dtpEndTime.Size          = new Size(130, 26);
+        dtpEndTime.Font          = new Font("Segoe UI", 10f);
+        dtpEndTime.Value         = new DateTime(2025, 1, 1, 0, 1, 0);
+        dtpEndTime.TabIndex      = 5;
+        dtpEndTime.ValueChanged += dtpEndTime_ValueChanged;
+
+        // lblDuration
+        lblDuration.AutoSize = false;
+        lblDuration.Location = new Point(12, 68);
+        lblDuration.Size     = new Size(400, 20);
+        lblDuration.Text     = "Duração: --:--:--";
+        lblDuration.Font     = new Font("Segoe UI", 9f, FontStyle.Italic);
+        lblDuration.Tag      = "muted";
+
+        // ── btnProcess ──
+        btnProcess.Location = new Point(12, 302);
+        btnProcess.Size     = new Size(185, 40);
+        btnProcess.Text     = "✂  Cortar Vídeo";
+        btnProcess.Font     = new Font("Segoe UI", 10f, FontStyle.Bold);
+        btnProcess.TabIndex = 6;
+        btnProcess.Click   += btnProcess_Click;
+
+        // ── btnCancel ──
+        btnCancel.Location = new Point(207, 302);
+        btnCancel.Size     = new Size(120, 40);
+        btnCancel.Text     = "✕  Cancelar";
+        btnCancel.Font     = new Font("Segoe UI", 10f);
+        btnCancel.TabIndex = 7;
+        btnCancel.Visible  = false;
+        btnCancel.Click   += btnCancel_Click;
+
+        // ── progressBar ──
+        progressBar.Location = new Point(12, 358);
+        progressBar.Size     = new Size(596, 6);
+        progressBar.Visible  = false;
+        progressBar.TabStop  = false;
+
+        // ── lblStatus ──
+        lblStatus.AutoSize  = false;
+        lblStatus.Location  = new Point(12, 372);
+        lblStatus.Size      = new Size(596, 20);
+        lblStatus.Text      = "Pronto  •  Arraste um vídeo para iniciar";
+        lblStatus.Font      = new Font("Segoe UI", 8.5f);
+        lblStatus.TextAlign = ContentAlignment.MiddleLeft;
+
+        // ── MainForm ──
+        AutoScaleDimensions = new SizeF(96f, 96f);
+        AutoScaleMode       = AutoScaleMode.Dpi;
+        ClientSize          = new Size(620, 405);
+        Font                = new Font("Segoe UI", 9f);
+        FormBorderStyle     = FormBorderStyle.FixedSingle;
+        MaximizeBox         = false;
+        StartPosition       = FormStartPosition.CenterScreen;
+        Text                = "Cuttage — Cortar Vídeos";
+
+        Controls.AddRange(new Control[] {
+            lblSectionFiles,
+            panelFiles,
+            lblSectionTiming,
+            panelTiming,
+            btnProcess,
+            btnCancel,
+            progressBar,
+            lblStatus
+        });
+
+        Load += MainForm_Load;
+
+        panelFiles.ResumeLayout(false);
+        panelTiming.ResumeLayout(false);
+        ResumeLayout(false);
     }
 }

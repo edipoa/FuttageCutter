@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace Cuttage.Models;
 
-namespace Cuttage.Models
+public sealed record VideoProcessingRequest(
+    string InputFilePath,
+    string OutputFilePath,
+    TimeSpan StartTime,
+    TimeSpan EndTime)
 {
-    public class VideoProcessingRequest
-    {
-        public string InputFilePath { get; set; }
-        public string OutputFilePath { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+    public TimeSpan Duration => EndTime - StartTime;
 
-        public bool IsValid()
-        {
-            return !string.IsNullOrEmpty(InputFilePath) &&
-                   !string.IsNullOrEmpty(OutputFilePath) &&
-                   StartTime < EndTime &&
-                   System.IO.File.Exists(InputFilePath);
-        }
-
-        public TimeSpan Duration => EndTime - StartTime;
-    }
+    public bool IsValid() =>
+        !string.IsNullOrEmpty(InputFilePath) &&
+        !string.IsNullOrEmpty(OutputFilePath) &&
+        StartTime < EndTime &&
+        File.Exists(InputFilePath);
 }
